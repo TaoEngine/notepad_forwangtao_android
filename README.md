@@ -1,4 +1,4 @@
-# NotePad for WangTao(Android Platform) / 汪涛的记事本（安卓版）
+# notepad for WangTao(Android Platform) / 汪涛的记事本（安卓版）
 
 A NotePad application for me. I really like it, and I hope that those of you who have the chance to see it will like it too!\
 写给我自己的记事本APP，我很喜欢它，希望有缘见到它的你也能喜欢上它哦！
