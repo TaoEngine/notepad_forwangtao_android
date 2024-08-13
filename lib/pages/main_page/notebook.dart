@@ -62,24 +62,21 @@ class ViewAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        IconButton.filledTonal(
-          icon: const Icon(Icons.search),
-          onPressed: () =>
-              {Navigator.pushNamed(context, '/search')}, //TODO 待实现按下“搜索”按钮的逻辑
-        ),
-        const SizedBox(width: 4),
         IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () => {
                   Navigator.pushNamed(context, '/notify')
                 } //按下“显示通知"按钮可以接收app需要你做的事情
             ),
-        const SizedBox(width: 4),
+        IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () =>
+              {Navigator.pushNamed(context, '/search')}, //TODO 待实现按下“搜索”按钮的逻辑
+        ),
         IconButton(
           icon: const Icon(Icons.style),
           onPressed: () => styleDialog(context), //按下“界面设置"按钮就会弹出设置style的弹出框
         ),
-        const SizedBox(width: 8),
       ],
     );
   }

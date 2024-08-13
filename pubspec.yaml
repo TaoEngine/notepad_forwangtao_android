@@ -9,7 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   dynamic_color: ^1.7.0
+  
 
 dev_dependencies:
   flutter_test:

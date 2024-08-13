@@ -35,22 +35,19 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: const Text('汪涛的记事本'),
       actions: [
-        IconButton.filledTonal(
-          icon: const Icon(Icons.search),
-          onPressed: () => {}, //TODO 待实现按下“搜索”按钮的逻辑
-        ),
-        const SizedBox(width: 4),
         IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () => {
                   Navigator.pushNamed(context, '/notify')
                 } //TODO 按下“显示通知"按钮可以接收app需要你做的事情
             ),
-        const SizedBox(width: 4),
+        IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () => {}, //TODO 待实现按下“搜索”按钮的逻辑
+        ),
         IconButton(
             icon: const Icon(Icons.style),
             onPressed: () => {styleDialog(context)}),
-        const SizedBox(width: 8),
       ],
     );
   }

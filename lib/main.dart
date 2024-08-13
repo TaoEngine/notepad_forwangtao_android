@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'pages/routes.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   //一波代码初始化
@@ -35,6 +36,13 @@ class MainApp extends StatelessWidget {
         //路由表以及首页
         initialRoute: '/notebook',
         onGenerateRoute: pageRouter,
+
+        //多语言设置
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [Locale('zh', 'CN')],
       );
     });
   }

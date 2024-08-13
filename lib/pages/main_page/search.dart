@@ -6,17 +6,38 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          leading: IconButton.filledTonal(
-              onPressed: () =>
-                  Navigator.of(context).pop(), //返回至上一页，但是图标会随着上一页而更改
-              icon: const Icon(Icons.book)), //TODO 可随上一页更改的图标
+        appBar: AppBar(
           centerTitle: false,
           title: const ListTile(
             title: Text('搜些什么'),
             subtitle: Text('在 大三上物流导论 中搜索...'),
-          )),
-      body: Container(),
-    );
+          ),
+          actions: [
+            IconButton.filledTonal(
+                onPressed: () => {}, icon: const Icon(Icons.search)),
+            IconButton(onPressed: () => {}, icon: const Icon(Icons.local_offer))
+          ],
+        ),
+        body: Center(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Column(children: [
+                Container(
+                  margin: const EdgeInsets.all(20),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), labelText: '搜索记事本的一切'),
+                  ),
+                ),
+                const Divider()
+              ]),
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [], //TODO这里放置搜索建议
+              )
+            ],
+          ),
+        ));
   }
 }
