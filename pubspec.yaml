@@ -11,13 +11,20 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  # Material You 动态颜色
   dynamic_color: ^1.7.0
+  # isar 数据库
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.4
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
+  isar_generator: ^3.1.0+1
+  build_runner: ^2.4.12
 
 flutter:
   uses-material-design: true

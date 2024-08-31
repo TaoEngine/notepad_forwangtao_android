@@ -87,6 +87,8 @@ After that, you will have your very own notepad!\
 Of course, if you have some experience with Flutter development, that would be even better. I've added a lot of comments to make it easier for you to modify the code (though my main purpose was to organize my own thoughts).\
 当然你如果有一定Flutter开发的经验那就更好了，我做了非常多的注释方便你修改代码（但主要目的是为了整理我自己的思路）
 
+我其实更想将这个记事本软件作为大家以后用来开发类笔记软件的引导。记事本，不是一个简单的文本编辑器，它是我生活中非常重要的一部分
+
 I'm not very skilled at coding, so if you find any issues or have some suggestions, make sure to kick me a message! It's a personal small project, and I don't think it's necessary to create a group chat, so let's just make do with using issues for communication.\
 我写代码比较菜，发现问题、有些意见记得踹我哈！个人小项目，感觉没创建群聊的意义吧，就将就一下使用issue好了
 

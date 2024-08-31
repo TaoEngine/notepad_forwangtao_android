@@ -1,25 +1,30 @@
+import 'pages/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'pages/routes.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+/// 万物起记！汪涛的记事本，启动！
+///
+/// 这里是APP的启动入口
+///
+/// Notes: 我在这里设置了如何将小白条隐藏的方法\
+/// 小白条虽说默认是透明的，但是小白条的图层是在APP之上，要想实现沉浸式小白条，需要在APP绘制前就声明APP的图层是在顶部的(1)
 void main() {
-  //一波代码初始化
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
-    //设置导航小白条透明
     const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.transparent,
       statusBarColor: Colors.transparent,
     ),
   );
-  //我的代码在你之上！
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  //汪涛的记事本，启动！
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge); //(1)
   runApp(const MainApp());
 }
 
+/// 整个记事本APP的框架及启动页面就在这里了
+///
+/// Notes:
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 

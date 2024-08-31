@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/dialog/main_dialog/notebook.dart';
-import '../../widgets/widget/main_page/notebook.dart';
+// import '../../widget/main_page/notebook.dart';
 
 class NotebookPage extends StatelessWidget {
   /// 显示记事本首页
@@ -10,16 +10,9 @@ class NotebookPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime b = DateTime(2024, 8, 6);
-    DateTime a = DateTime(2024, 3, 7);
     return Scaffold(
       appBar: const ViewAppBar(),
-      body: NotebookPreviewCard(importNotebookInfo: {
-        'NotebookName': '测试测试！',
-        'NotebookType': 0,
-        'LastViewTime': b,
-        'LastEditTime': a,
-      }),
+      body: ViewBody(),
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.edit_note_outlined),
         label: const Text('记点啥'),
@@ -30,7 +23,7 @@ class NotebookPage extends StatelessWidget {
 }
 
 class ViewAppBar extends StatelessWidget implements PreferredSizeWidget {
-  /// 记事本集合的AppBar及其导航逻辑
+  /// 记事本集合的AppBar部分
   ///
   /// 部件依次是：
   /// - “阅览所有记事本”按钮
@@ -77,6 +70,24 @@ class ViewAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.style),
           onPressed: () => styleDialog(context), //按下“界面设置"按钮就会弹出设置style的弹出框
         ),
+      ],
+    );
+  }
+}
+
+class ViewBody extends StatelessWidget {
+  /// 记事本页面的Body部分
+  const ViewBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        Chip(
+            avatar: const Icon(Icons.ac_unit),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            label: const Text('data')),
       ],
     );
   }

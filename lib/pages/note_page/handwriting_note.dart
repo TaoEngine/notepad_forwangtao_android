@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../icon.dart';
+import '../../static/notepad_icon.dart';
 
 class HandwritingModePage extends StatelessWidget {
   const HandwritingModePage({super.key});
