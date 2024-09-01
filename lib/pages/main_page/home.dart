@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../widgets/dialog/main_dialog/notebook.dart';
 
 class HomePage extends StatelessWidget {
   /// 记事本的集合页面
@@ -45,9 +44,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.search),
           onPressed: () => {}, //TODO 待实现按下“搜索”按钮的逻辑
         ),
-        IconButton(
-            icon: const Icon(Icons.style),
-            onPressed: () => {styleDialog(context)}),
+        IconButton(icon: const Icon(Icons.style), onPressed: () => {}),
       ],
     );
   }

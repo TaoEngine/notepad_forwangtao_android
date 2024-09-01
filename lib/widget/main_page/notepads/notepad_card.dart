@@ -19,7 +19,7 @@ class NotebookPreviewCard extends StatefulWidget {
   /// ```dart
   /// NotebookPreviewWidget(importNotebookInfo: {
   ///   'NotebookName': '物流装备',
-  ///   'NotebookType': 1
+  ///   'NotebookType': 1,
   ///   'LastViewTime': 时间戳,
   ///   'LastEditTime': 时间戳,
   /// }),

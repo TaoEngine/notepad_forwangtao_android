@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of '../notepads.dart';
 
 /// 一个引导用户调整style的对话框
 ///

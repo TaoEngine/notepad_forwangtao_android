@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 
 // 主界面的跳转逻辑
 import './main_page/home.dart';
-import './main_page/notebook.dart';
+import 'main_page/notepads.dart';
 import './main_page/notify.dart';
 import './main_page/search.dart';
 
@@ -38,7 +38,7 @@ import './note_page/pdf_note.dart';
 
 final Map<String, Function> pageRoutes = {
   '/notehome': (context) => const HomePage(), //主页
-  '/notebook': (context) => const NotebookPage(), //记事本预览
+  '/notebook': (context) => const NotepadsPage(), //记事本预览
   '/search': (context) => const SearchPage(), //搜索
   '/notify': (context) => const NotifyPage(), //通知
 

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../static/notepad_icon.dart';
 import '../../funcs/timeview.dart';
 
+part 'notepads/appbar.dart';
 part 'notepads/category_chip.dart';
-part 'notepads/notepad_preview_card.dart';
-part 'notepads/folder_preview_card.dart';
-part 'notepads/notepad_preview_set_dialog.dart';
+part 'notepads/notepad_card.dart';
+part 'notepads/folder_card.dart';
+part 'notepads/set_dialog.dart';
+part 'notepads/style_dialog.dart';
