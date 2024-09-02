@@ -87,6 +87,30 @@ class NotepadsBody extends StatelessWidget {
                   'notepadsCount': 5
                 },
               ),
+              FolderPreviewWidget(
+                importFolderInfo: const {
+                  'folderName': '只是一个文件夹',
+                  'notepadsCount': 5
+                },
+              ),
+              FolderPreviewWidget(
+                importFolderInfo: const {
+                  'folderName': '只是一个文件夹',
+                  'notepadsCount': 5
+                },
+              ),
+              FolderPreviewWidget(
+                importFolderInfo: const {
+                  'folderName': '只是一个文件夹',
+                  'notepadsCount': 5
+                },
+              ),
+              FolderPreviewWidget(
+                importFolderInfo: const {
+                  'folderName': '只是一个文件夹',
+                  'notepadsCount': 5
+                },
+              ),
             ],
           ),
         ),
@@ -116,11 +140,29 @@ class NotepadsBody extends StatelessWidget {
             crossAxisCount: 1,
             childAspectRatio: 16 / 10,
             children: <Widget>[
-              NotebookPreviewCard(importNotebookInfo: {
-                'NotebookName': '笔记功能还没做好啊！',
-                'NotebookType': 0,
-                'LastViewTime': DateTime.now(),
-                'LastEditTime': DateTime.now(),
+              NotepadPreviewCard(importNotepadInfo: {
+                'notepadName': '笔记功能还没做好啊！',
+                'notepadType': 0,
+                'lastViewTime': DateTime.now(),
+                'lastEditTime': DateTime.now(),
+              }),
+              NotepadPreviewCard(importNotepadInfo: {
+                'notepadName': '笔记功能还没做好啊！',
+                'notepadType': 0,
+                'lastViewTime': DateTime.now(),
+                'lastEditTime': DateTime.now(),
+              }),
+              NotepadPreviewCard(importNotepadInfo: {
+                'notepadName': '笔记功能还没做好啊！',
+                'notepadType': 0,
+                'lastViewTime': DateTime.now(),
+                'lastEditTime': DateTime.now(),
+              }),
+              NotepadPreviewCard(importNotepadInfo: {
+                'notepadName': '笔记功能还没做好啊！',
+                'notepadType': 0,
+                'lastViewTime': DateTime.now(),
+                'lastEditTime': DateTime.now(),
               })
             ],
           ),
