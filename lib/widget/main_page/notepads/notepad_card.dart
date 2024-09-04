@@ -90,19 +90,20 @@ class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
 
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(width: 1, color: Colors.grey)),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(width: 1, color: Colors.grey),
+      ),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         onTap: () => {},
-        onLongPress: () => {},
+        onLongPress: () => notebookPreviewSetDialog(context),
         child: Stack(
           children: [
             Align(
               alignment: Alignment.center,
               child: Icon(cardBackground(widget.notepadType),
                   size: 80,
-                  color: Theme.of(context).colorScheme.inversePrimary),
+                  color: Theme.of(context).colorScheme.primaryContainer),
             ),
             Align(
               alignment: Alignment.bottomLeft,

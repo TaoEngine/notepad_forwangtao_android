@@ -14,8 +14,9 @@ class FolderPreviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(width: 1, color: Colors.grey)),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(width: 1, color: Colors.grey),
+      ),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         onTap: () => {},
@@ -24,8 +25,12 @@ class FolderPreviewWidget extends StatelessWidget {
           alignment: Alignment.center,
           child: ListTile(
             leading: Badge(
-              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-              label: Text('x$notepadsCount'),
+              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              label: Text(
+                'x$notepadsCount',
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.inverseSurface),
+              ),
               child: const Icon(Icons.folder),
             ),
             title: Text(

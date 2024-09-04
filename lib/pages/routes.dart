@@ -38,13 +38,13 @@ import './note_page/pdf_note.dart';
 
 final Map<String, Function> pageRoutes = {
   '/notehome': (context) => const HomePage(), //主页
-  '/notebook': (context) => const NotepadsPage(), //记事本预览
+  '/notepads': (context) => const NotepadsPage(), //记事本预览
   '/search': (context) => const SearchPage(), //搜索
   '/notify': (context) => const NotifyPage(), //通知
 
-  '/note/handwriting': (context) => const HandwritingModePage(), //手写记事本
-  '/note/markdown': (context) => const MarkdownModePage(), //markdown记事本
-  '/note/pdf': (context) => const PDFModePage(), //pdf备注记事本
+  '/notepads/handwriting': (context) => const HandwritingModePage(), //手写记事本
+  '/notepads/markdown': (context) => const MarkdownModePage(), //markdown记事本
+  '/notepads/pdf': (context) => const PDFModePage(), //pdf备注记事本
 };
 
 /// 路由表逻辑，支持传参

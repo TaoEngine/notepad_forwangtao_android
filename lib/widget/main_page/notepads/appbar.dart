@@ -15,11 +15,11 @@ class NotepadAppbar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       title: const ListTile(
         title: Text(
-          '大三上物流导论',
+          '采购与供应管理',
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(
-          '/第三章/物流装备',
+          '/',
           overflow: TextOverflow.ellipsis,
         ),
       ),
