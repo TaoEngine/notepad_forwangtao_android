@@ -27,15 +27,16 @@ void main() {
   runApp(const MainApp());
 }
 
-/// 整个记事本APP的框架及启动页面就在这里了
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    //Material You获取颜色
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
+      //GetX
       return GetMaterialApp(
-        title: '大三上物流导论',
+        title: '采购与供应管理',
 
         //深色和浅色模式 TODO 颜色没实现手动切换
         theme: ThemeData(colorScheme: lightColorScheme, useMaterial3: true),
@@ -43,7 +44,7 @@ class MainApp extends StatelessWidget {
 
         //路由表以及首页
         initialRoute: '/notepads',
-        onGenerateRoute: pageRouter,
+        getPages: PageRoutes.pageRoutes,
 
         //多语言设置
         localizationsDelegates: const [

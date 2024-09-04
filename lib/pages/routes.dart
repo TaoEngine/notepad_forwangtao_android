@@ -20,9 +20,9 @@
 ///   - 应用解耦
 library routes;
 
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-// 主界面的跳转逻辑
+// 功能页面的跳转逻辑
 import './main_page/home.dart';
 import 'main_page/notepads.dart';
 import './main_page/notify.dart';
@@ -36,36 +36,54 @@ import './note_page/pdf_note.dart';
 // 设置界面的跳转逻辑
 //import './setting_page/themes.dart';
 
-final Map<String, Function> pageRoutes = {
-  '/notehome': (context) => const HomePage(), //主页
-  '/notepads': (context) => const NotepadsPage(), //记事本预览
-  '/search': (context) => const SearchPage(), //搜索
-  '/notify': (context) => const NotifyPage(), //通知
+// final Map<String, Function> pageRoutes = {
+//   '/notehome': (context) => const HomePage(), //主页
+//   '/notepads': (context) => const NotepadsPage(), //记事本预览
+//   '/search': (context) => const SearchPage(), //搜索
+//   '/notify': (context) => const NotifyPage(), //通知
 
-  '/notepads/handwriting': (context) => const HandwritingModePage(), //手写记事本
-  '/notepads/markdown': (context) => const MarkdownModePage(), //markdown记事本
-  '/notepads/pdf': (context) => const PDFModePage(), //pdf备注记事本
-};
+//   '/notepads/handwriting': (context) => const HandwritingModePage(), //手写记事本
+//   '/notepads/markdown': (context) => const MarkdownModePage(), //markdown记事本
+//   '/notepads/pdf': (context) => const PDFModePage(), //pdf备注记事本
+// };
 
-/// 路由表逻辑，支持传参
-///
-/// 是这样的，直接引入到main就好了
-var pageRouter = (RouteSettings settings) {
-  final String? name = settings.name;
-  final Function? pageContentBuilder = pageRoutes[name];
-  if (pageContentBuilder != null) {
-    if (settings.arguments != null) {
-      //含参数的路由方式
-      final Route route = MaterialPageRoute(
-          builder: (context) =>
-              pageContentBuilder(context, arguments: settings.arguments));
-      return route;
-    } else {
-      //不含参数的路由方式
-      final Route route =
-          MaterialPageRoute(builder: (context) => pageContentBuilder(context));
-      return route;
-    }
-  }
-  return null;
-};
+// var pageRouter = (RouteSettings settings) {
+//   final String? name = settings.name;
+//   final Function? pageContentBuilder = pageRoutes[name];
+//   if (pageContentBuilder != null) {
+//     if (settings.arguments != null) {
+//       //含参数的路由方式
+//       final Route route = MaterialPageRoute(
+//           builder: (context) =>
+//               pageContentBuilder(context, arguments: settings.arguments));
+//       return route;
+//     } else {
+//       //不含参数的路由方式
+//       final Route route =
+//           MaterialPageRoute(builder: (context) => pageContentBuilder(context));
+//       return route;
+//     }
+//   }
+//   return null;
+// };
+
+class PageRoutes {
+  static final pageRoutes = [
+    // 功能页面
+    GetPage(
+      name: '/notehome',
+      page: () => const HomePage(),
+    ),
+    GetPage(name: '/notepads', page: () => const NotepadsPage()),
+    GetPage(name: '/search', page: () => const SearchPage()),
+    GetPage(name: '/notify', page: () => const NotifyPage()),
+
+    // 记事本页面
+    GetPage(
+        name: '/notepads/handwriting', page: () => const HandwritingModePage()),
+    GetPage(name: '/notepads/markdown', page: () => const MarkdownModePage()),
+    GetPage(name: '/notepads/pdf', page: () => const PDFModePage()),
+
+    //设置页面
+  ];
+}
