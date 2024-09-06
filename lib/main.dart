@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:dynamic_color/dynamic_color.dart';
+//import 'package:dynamic_color/dynamic_color.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'pages/routes.dart';
@@ -32,28 +34,64 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Material You获取颜色
-    return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
-      //GetX
-      return GetMaterialApp(
-        title: '采购与供应管理',
+    //GetX
+    return GetMaterialApp(
+      title: '采购与供应管理',
 
-        //深色和浅色模式 TODO 颜色没实现手动切换
-        theme: ThemeData(colorScheme: lightColorScheme, useMaterial3: true),
-        darkTheme: ThemeData(colorScheme: darkColorScheme, useMaterial3: true),
+// Theme config for FlexColorScheme version 7.3.x. Make sure you use
+// same or higher package version, but still same major version. If you
+// use a lower package version, some properties may not be supported.
+// In that case remove them after copying this theme to your app.
+      theme: FlexThemeData.light(
+        scheme: FlexScheme.materialBaseline,
+        surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+        blendLevel: 7,
+        subThemesData: const FlexSubThemesData(
+          blendOnLevel: 10,
+          blendOnColors: false,
+          useTextTheme: true,
+          useM2StyleDividerInM3: true,
+          alignedDropdown: true,
+          useInputDecoratorThemeInDialogs: true,
+        ),
+        visualDensity: FlexColorScheme.comfortablePlatformDensity,
+        useMaterial3: true,
+        swapLegacyOnMaterial3: true,
+        // To use the Playground font, add GoogleFonts package and uncomment
+        // fontFamily: GoogleFonts.notoSans().fontFamily,
+      ),
+      darkTheme: FlexThemeData.dark(
+        scheme: FlexScheme.materialBaseline,
+        surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+        blendLevel: 13,
+        subThemesData: const FlexSubThemesData(
+          blendOnLevel: 20,
+          useTextTheme: true,
+          useM2StyleDividerInM3: true,
+          alignedDropdown: true,
+          useInputDecoratorThemeInDialogs: true,
+        ),
+        visualDensity: FlexColorScheme.comfortablePlatformDensity,
+        useMaterial3: true,
+        swapLegacyOnMaterial3: true,
+        // To use the Playground font, add GoogleFonts package and uncomment
+        // fontFamily: GoogleFonts.notoSans().fontFamily,
+      ),
+// If you do not have a themeMode switch, uncomment this line
+// to let the device system mode control the theme mode:
+// themeMode: ThemeMode.system,
 
-        //路由表以及首页
-        initialRoute: '/notepads',
-        getPages: PageRoutes.pageRoutes,
+      //路由表以及首页
+      initialRoute: '/notepads/handwriting',
+      getPages: PageRoutes.pageRoutes,
 
-        //多语言设置
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [Locale('zh', 'CN')],
-      );
-    });
+      //多语言设置
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('zh', 'CN')],
+    );
   }
 }

@@ -29,9 +29,9 @@ import './main_page/notify.dart';
 import './main_page/search.dart';
 
 // 记事本界面的跳转逻辑
-import './note_page/handwriting_note.dart';
-import './note_page/markdown_note.dart';
-import './note_page/pdf_note.dart';
+import 'note_page/handwriting.dart';
+import 'note_page/markdown.dart';
+import 'note_page/pdf.dart';
 
 // 设置界面的跳转逻辑
 //import './setting_page/themes.dart';
