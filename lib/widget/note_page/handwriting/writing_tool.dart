@@ -19,7 +19,7 @@ class WritingToolBar extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 30, bottom: 10),
-                        child: IconButton(
+                        child: IconButton.filledTonal(
                             onPressed: () => {},
                             icon: const FaIcon(FontAwesomeIcons.pencil)),
                       ),

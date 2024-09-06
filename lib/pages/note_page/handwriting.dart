@@ -8,7 +8,11 @@ class HandwritingModePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const WritingToolBar(),
+      body: Stack(
+        children: [
+          WritingPanel(),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
           tooltip: '回到记事本合集',
           onPressed: () => {},
