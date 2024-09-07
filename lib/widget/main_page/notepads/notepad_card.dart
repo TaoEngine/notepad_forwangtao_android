@@ -1,7 +1,9 @@
 part of '../notepads.dart';
 
 class NotepadPreviewCard extends StatefulWidget {
-  /// 记事本名字
+  /// 记事本名字 [String]
+  ///
+  ///
   final String notepadName;
 
   /// 记事本类型

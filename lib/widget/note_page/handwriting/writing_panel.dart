@@ -42,7 +42,11 @@ class _WritingPanelState extends State<WritingPanel> {
             child: Stack(
               children: [
                 // 渲染格子
-                const WritingLines(),
+                const WritingShading(
+                  horizontalLineWithit: 50,
+                  verticalLineWithit: 0,
+                  horizontalLineWithedge: 8 / 9,
+                ),
 
                 // 打开就渲染
                 CustomPaint(
