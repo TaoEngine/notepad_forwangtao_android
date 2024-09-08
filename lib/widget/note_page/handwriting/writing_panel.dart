@@ -41,11 +41,11 @@ class _WritingPanelState extends State<WritingPanel> {
             alignment: Alignment.center,
             child: Stack(
               children: [
-                // 渲染格子
-                const WritingShading(
-                  horizontalLineWithit: 50,
+                // 渲染底纹
+                const Shading(
+                  shadingLineOrDot: true,
+                  horizontalLineWithit: 30,
                   verticalLineWithit: 0,
-                  horizontalLineWithedge: 8 / 9,
                 ),
 
                 // 打开就渲染

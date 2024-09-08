@@ -1,6 +1,6 @@
 part of '../handwriting.dart';
 
-class WritingShading extends StatelessWidget {
+class Shading extends StatelessWidget {
   /// 底纹是点还是实线 [bool]
   ///
   /// 用法：实线 `True` ，点 `False`
@@ -10,12 +10,12 @@ class WritingShading extends StatelessWidget {
 
   /// 横线之间的间隔 [int]
   ///
-  /// 用法：输入数字，输 `0` 表示不绘制横线
+  /// 用法：输入数字作为间隔，输 `0` 表示不绘制横线
   final int horizontalLineWithit;
 
   /// 竖线之间的间隔 [int]
   ///
-  /// 用法：输入数字，输 `0` 表示不绘制竖线
+  /// 用法：输入数字作为间隔，输 `0` 表示不绘制竖线
   final int verticalLineWithit;
 
   /// 横线与组件边框的距离 [double]
@@ -23,7 +23,7 @@ class WritingShading extends StatelessWidget {
   /// 注意：当且仅当 `horizontalLineWithit` 不为0时这个才能起作用，也就是说
   /// `horizontalLineWithit` 为0时就可以不用管这个东西了
   ///
-  /// 用法：输入(0,1]之间的小数，最好输入像 `5/6` 这样的分数形式。100%就是覆盖整个组件
+  /// 用法：输入 `(0,1]` 之间的小数，最好输入像 `5/6` 这样的分数形式。`1` 就是覆盖整个组件
   final double horizontalLineWithedge;
 
   /// 竖线与组件边框的距离 [double]
@@ -31,7 +31,7 @@ class WritingShading extends StatelessWidget {
   /// 注意：当且仅当 `verticalLineWithit` 不为0时这个才能起作用，也就是说
   /// `verticalLineWithit` 为0时就可以不用管这个东西了
   ///
-  /// 用法：输入(0,1]之间的小数，最好输入像 `5/6` 这样的分数形式。100%就是覆盖整个组件
+  /// 用法：输入 `(0,1]` 之间的小数，最好输入像 `5/6` 这样的分数形式。`1` 就是覆盖整个组件
   final double verticalLineWithedge;
 
   /// 绘制手写记事本的底纹
@@ -46,10 +46,10 @@ class WritingShading extends StatelessWidget {
   /// 记共存的情况下就会留有大片空白，而OneNote就很难对文字笔记进行排版，换行就容易露馅）
   ///
   /// 但是吧， TODO 我现在还没有如何实现这样的排版效果的方法，再等等吧😅
-  const WritingShading({
+  const Shading({
     this.shadingLineOrDot = true,
-    this.horizontalLineWithedge = 0,
-    this.verticalLineWithedge = 0,
+    this.horizontalLineWithedge = 1,
+    this.verticalLineWithedge = 1,
     super.key,
     required this.horizontalLineWithit,
     required this.verticalLineWithit,
@@ -69,11 +69,20 @@ class WritingShading extends StatelessWidget {
     Color lineColor = Theme.of(context).colorScheme.onSurface;
 
     return CustomPaint(
-      size: Size(driverWidth, driverHeight),
-      painter: LinePainter(driverWidth, driverHeight, lineEmptyWidth,
-          lineEmptyHeight, horizontalLineWithit, verticalLineWithit, lineColor),
-
-      /// TODO 底纹的详细调教准备一下
+      size: Size(
+        driverWidth,
+        driverHeight,
+      ),
+      painter: LinePainter(
+        driverWidth,
+        driverHeight,
+        lineEmptyWidth,
+        lineEmptyHeight,
+        horizontalLineWithit,
+        verticalLineWithit,
+        shadingLineOrDot,
+        lineColor,
+      ),
     );
   }
 }
@@ -85,16 +94,19 @@ class LinePainter extends CustomPainter {
   final double lineEmptyHeight;
   final int horizontalLineWithit;
   final int verticalLineWithit;
+  final bool shadingLineOrDot;
   final Color lineColor;
 
   LinePainter(
-      this.driverWidth,
-      this.driverHeight,
-      this.lineEmptyWidth,
-      this.lineEmptyHeight,
-      this.horizontalLineWithit,
-      this.verticalLineWithit,
-      this.lineColor);
+    this.driverWidth,
+    this.driverHeight,
+    this.lineEmptyWidth,
+    this.lineEmptyHeight,
+    this.horizontalLineWithit,
+    this.verticalLineWithit,
+    this.shadingLineOrDot,
+    this.lineColor,
+  );
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -104,13 +116,39 @@ class LinePainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
 
-    // 能绘制横线就绘制横线
-    if (horizontalLineWithit != 0) {
-      for (var i = 0; i < driverHeight; i += horizontalLineWithit) {
-        Offset startLineOffset = Offset(lineEmptyWidth, i.toDouble());
-        Offset endLineOffset =
-            Offset(driverWidth - lineEmptyWidth, i.toDouble());
-        canvas.drawLine(startLineOffset, endLineOffset, linePaint);
+    // 绘制点还是直线
+    if (shadingLineOrDot) {
+      // 绘制直线
+      // 能绘制横线就绘制横线
+      if (horizontalLineWithit != 0) {
+        for (var i = 0; i < driverHeight; i += horizontalLineWithit) {
+          canvas.drawLine(
+            Offset(lineEmptyWidth, i.toDouble()),
+            Offset(driverWidth - lineEmptyWidth, i.toDouble()),
+            linePaint,
+          );
+        }
+      }
+      // 能绘制竖线就绘制竖线
+      if (verticalLineWithit != 0) {
+        for (var i = 0; i < driverHeight; i += verticalLineWithit) {
+          canvas.drawLine(
+            Offset(i.toDouble(), lineEmptyWidth),
+            Offset(i.toDouble(), driverHeight - lineEmptyWidth),
+            linePaint,
+          );
+        }
+      }
+    } else {
+      // 绘制点
+      for (var i = 0; i < driverWidth; i += horizontalLineWithit) {
+        for (var j = 0; j < driverHeight; j += verticalLineWithit) {
+          canvas.drawCircle(
+            Offset(i.toDouble(), j.toDouble()),
+            0.5,
+            linePaint,
+          );
+        }
       }
     }
   }

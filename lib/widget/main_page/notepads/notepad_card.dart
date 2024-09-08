@@ -74,13 +74,13 @@ class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
       IconData? cardBackground;
       switch (notebookType) {
         case 0:
-          cardBackground = NoteTypeFont.writeIcon;
+          cardBackground = const FaIcon(FontAwesomeIcons.feather) as IconData?;
           break;
         case 1:
-          cardBackground = NoteTypeFont.markdownIcon;
+          cardBackground = const FaIcon(FontAwesomeIcons.markdown) as IconData?;
           break;
         case 2:
-          cardBackground = NoteTypeFont.pdfIcon;
+          cardBackground = const FaIcon(FontAwesomeIcons.filePdf) as IconData?;
           break;
       }
       return cardBackground;
