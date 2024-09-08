@@ -12,115 +12,36 @@ class WritingScript {
 }
 
 /// 书写面板
-class WritingPanel extends StatefulWidget {
-  const WritingPanel({super.key});
+class WritingPanelOld extends StatefulWidget {
+  const WritingPanelOld({super.key});
 
   @override
-  State<WritingPanel> createState() => _WritingPanelState();
+  State<WritingPanelOld> createState() => _WritingPanelOldState();
 }
 
-class _WritingPanelState extends State<WritingPanel> {
+class _WritingPanelOldState extends State<WritingPanelOld> {
   WritingScript writingScripts = WritingScript([], Colors.amber);
   WritingScript writingScriptsLast = WritingScript([], Colors.amber);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        // 落笔
-        onPanUpdate: (details) {
-          setState(() {
-            writingScripts.wScript.add(details.localPosition);
-            writingScriptsLast.wScript.add(details.localPosition);
-          });
-        },
-        onPanEnd: (details) {
-          setState(() {
-            writingScripts.wScript.clear();
-          });
-        },
-        child: Align(
-            alignment: Alignment.center,
-            child: Stack(
-              children: [
-                // 渲染底纹
-                const Shading(
-                  shadingLineOrDot: true,
-                  horizontalLineWithit: 30,
-                  verticalLineWithit: 0,
-                ),
+    return const Align(
+      alignment: Alignment.center,
+      child: Stack(
+        children: [
+          // 渲染底纹
+          Shading(
+            shadingLineOrDot: true,
+            horizontalLineWithit: 50,
+            verticalLineWithit: 0,
+            horizontalLineWithedge: 0.9,
+          ),
 
-                // 打开就渲染
-                CustomPaint(
-                  size: Size(MediaQuery.of(context).size.width,
-                      MediaQuery.of(context).size.height),
-                ),
-
-                // 书写即时渲染
-                CustomPaint(
-                  // 书写后再统一渲染
-                  painter: LastWriter(writingScriptsLast),
-                  // 即时渲染
-                  foregroundPainter: Writer(writingScripts),
-                  size: Size(MediaQuery.of(context).size.width,
-                      MediaQuery.of(context).size.height),
-                ),
-              ],
-            )));
+          // 书写即时渲染
+          WritingPanel()
+        ],
+      ),
+    );
   }
-}
-
-class Writer extends CustomPainter {
-  final WritingScript wScripts;
-
-  Writer(this.wScripts);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint nowWrite = Paint()
-      ..color = wScripts.wColor
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 5;
-
-    if (wScripts.wScript.isNotEmpty) {
-      for (var i = 0; i < wScripts.wScript.length; i++) {
-        if (i > 1) {
-          canvas.drawLine(
-              wScripts.wScript[i - 1], wScripts.wScript[i], nowWrite);
-        }
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(Writer oldDelegate) => true;
-
-  @override
-  bool shouldRebuildSemantics(Writer oldDelegate) => false;
-}
-
-class LastWriter extends CustomPainter {
-  final WritingScript wScripts;
-
-  LastWriter(this.wScripts);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint nowWrite = Paint()
-      ..color = wScripts.wColor
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 6;
-
-    if (wScripts.wScript.isNotEmpty) {
-      for (var i = 0; i < wScripts.wScript.length; i++) {
-        canvas.drawCircle(wScripts.wScript[i], 1, nowWrite);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(LastWriter oldDelegate) => true;
-
-  @override
-  bool shouldRebuildSemantics(LastWriter oldDelegate) => false;
 }
 
 // ///

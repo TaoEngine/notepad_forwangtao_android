@@ -34,6 +34,14 @@ class Shading extends StatelessWidget {
   /// 用法：输入 `(0,1]` 之间的小数，最好输入像 `5/6` 这样的分数形式。`1` 就是覆盖整个组件
   final double verticalLineWithedge;
 
+  /// 底纹可配的插图 [String]
+  ///
+  /// 用法：输入图片的路径，什么都不输就是屏幕纯色 TODO 当前只支持网络图片
+  ///
+  /// 给底纹上一个背景图片，上类纸的图片写着就和在纸上写一样，上一些励志壁纸图片可以在书写时
+  /// 给予力量，甚至可以上各位二次元老婆的图满足一下自己哈
+  final String shadingBackgroundImage;
+
   /// 绘制手写记事本的底纹
   ///
   /// 正如一般的纸质笔记本、比较出色的笔记app而言，在页面上印制底纹大多是为了规范书写时的格式，
@@ -50,6 +58,7 @@ class Shading extends StatelessWidget {
     this.shadingLineOrDot = true,
     this.horizontalLineWithedge = 1,
     this.verticalLineWithedge = 1,
+    this.shadingBackgroundImage = '',
     super.key,
     required this.horizontalLineWithit,
     required this.verticalLineWithit,
@@ -68,12 +77,29 @@ class Shading extends StatelessWidget {
     // 取色板
     Color lineColor = Theme.of(context).colorScheme.onSurface;
 
+    // 需不需要图片
+    Widget backgroundImage;
+    if (shadingBackgroundImage != '') {
+      backgroundImage = SizedBox(
+        child: Image.network(
+          shadingBackgroundImage,
+          alignment: Alignment.topCenter,
+          fit: BoxFit.contain,
+          repeat: ImageRepeat.repeatY,
+          width: driverWidth,
+          height: driverHeight,
+        ),
+      );
+    } else {
+      backgroundImage = Container();
+    }
+
     return CustomPaint(
       size: Size(
         driverWidth,
         driverHeight,
       ),
-      painter: LinePainter(
+      foregroundPainter: LinePainter(
         driverWidth,
         driverHeight,
         lineEmptyWidth,
@@ -83,6 +109,7 @@ class Shading extends StatelessWidget {
         shadingLineOrDot,
         lineColor,
       ),
+      child: backgroundImage,
     );
   }
 }
@@ -119,6 +146,7 @@ class LinePainter extends CustomPainter {
     // 绘制点还是直线
     if (shadingLineOrDot) {
       // 绘制直线
+
       // 能绘制横线就绘制横线
       if (horizontalLineWithit != 0) {
         for (var i = 0; i < driverHeight; i += horizontalLineWithit) {
@@ -129,6 +157,7 @@ class LinePainter extends CustomPainter {
           );
         }
       }
+
       // 能绘制竖线就绘制竖线
       if (verticalLineWithit != 0) {
         for (var i = 0; i < driverHeight; i += verticalLineWithit) {
@@ -141,13 +170,19 @@ class LinePainter extends CustomPainter {
       }
     } else {
       // 绘制点
-      for (var i = 0; i < driverWidth; i += horizontalLineWithit) {
-        for (var j = 0; j < driverHeight; j += verticalLineWithit) {
-          canvas.drawCircle(
-            Offset(i.toDouble(), j.toDouble()),
-            0.5,
-            linePaint,
-          );
+      if (horizontalLineWithit > 0 && verticalLineWithit > 0) {
+        double i = lineEmptyWidth;
+        while (i < driverWidth) {
+          double j = lineEmptyHeight;
+          while (j < driverHeight) {
+            canvas.drawCircle(
+              Offset(i, j),
+              0.5,
+              linePaint,
+            );
+            j += verticalLineWithit;
+          }
+          i += horizontalLineWithit;
         }
       }
     }
