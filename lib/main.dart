@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-//import 'package:dynamic_color/dynamic_color.dart';
+// import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -38,12 +38,12 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       title: '采购与供应管理',
 
-// Theme config for FlexColorScheme version 7.3.x. Make sure you use
+// Theme config for FlexColorScheme version 7.1.x. Make sure you use
 // same or higher package version, but still same major version. If you
 // use a lower package version, some properties may not be supported.
 // In that case remove them after copying this theme to your app.
       theme: FlexThemeData.light(
-        scheme: FlexScheme.materialBaseline,
+        scheme: FlexScheme.aquaBlue,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 7,
         subThemesData: const FlexSubThemesData(
@@ -51,8 +51,6 @@ class MainApp extends StatelessWidget {
           blendOnColors: false,
           useTextTheme: true,
           useM2StyleDividerInM3: true,
-          alignedDropdown: true,
-          useInputDecoratorThemeInDialogs: true,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
@@ -61,15 +59,13 @@ class MainApp extends StatelessWidget {
         // fontFamily: GoogleFonts.notoSans().fontFamily,
       ),
       darkTheme: FlexThemeData.dark(
-        scheme: FlexScheme.materialBaseline,
+        scheme: FlexScheme.aquaBlue,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 13,
         subThemesData: const FlexSubThemesData(
           blendOnLevel: 20,
           useTextTheme: true,
           useM2StyleDividerInM3: true,
-          alignedDropdown: true,
-          useInputDecoratorThemeInDialogs: true,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
@@ -79,7 +75,7 @@ class MainApp extends StatelessWidget {
       ),
 // If you do not have a themeMode switch, uncomment this line
 // to let the device system mode control the theme mode:
-// themeMode: ThemeMode.system,
+      themeMode: ThemeMode.system,
 
       //路由表以及首页
       initialRoute: '/notepads/handwriting',

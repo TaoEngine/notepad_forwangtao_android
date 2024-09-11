@@ -74,7 +74,7 @@ class WriteScript extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     /// 笔迹
     Paint writer = Paint()
-      ..color = Colors.black
+      ..color = Colors.white
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
 
@@ -106,7 +106,7 @@ class LastWriteScript extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint writer = Paint()
-      ..color = Colors.black
+      ..color = Colors.white
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
 

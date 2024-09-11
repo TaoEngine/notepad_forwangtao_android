@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notepad_forwangtao_android/widget/note_page/handwriting.dart';
 
 class HandwritingModePage extends StatelessWidget {
@@ -8,11 +7,17 @@ class HandwritingModePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const WritingPanelOld(),
+      appBar: const HandwritingAppBar(),
+      body: const Stack(
+        children: [
+          HandwritingToolBar(toolbarAlignment: Alignment.bottomCenter),
+        ],
+      ), // TODO 书写界面优化中
+      bottomNavigationBar: const HandwritingBottomBar(),
       floatingActionButton: FloatingActionButton(
           tooltip: '回到记事本合集',
           onPressed: () => {},
-          child: const FaIcon(FontAwesomeIcons.book)),
+          child: const Icon(Icons.book)),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
     );
   }
