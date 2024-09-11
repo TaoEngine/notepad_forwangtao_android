@@ -78,7 +78,7 @@ class MainApp extends StatelessWidget {
       themeMode: ThemeMode.system,
 
       //路由表以及首页
-      initialRoute: '/notepads/handwriting',
+      initialRoute: '/notepads',
       getPages: PageRoutes.pageRoutes,
 
       //多语言设置

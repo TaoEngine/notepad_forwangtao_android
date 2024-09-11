@@ -70,20 +70,16 @@ class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
     }
 
     /// 在面对不同笔记类型的情况下可以切换底纹来表示打开的文件
-    IconData? cardBackground(int notebookType) {
-      IconData? cardBackground;
+    IconData cardBackground(int notebookType) {
       switch (notebookType) {
         case 0:
-          cardBackground = const FaIcon(FontAwesomeIcons.feather) as IconData?;
-          break;
+          return FontAwesomeIcons.feather;
         case 1:
-          cardBackground = const FaIcon(FontAwesomeIcons.markdown) as IconData?;
-          break;
+          return FontAwesomeIcons.markdown;
         case 2:
-          cardBackground = const FaIcon(FontAwesomeIcons.filePdf) as IconData?;
-          break;
+          return FontAwesomeIcons.filePdf;
       }
-      return cardBackground;
+      return FontAwesomeIcons.feather;
     }
 
     // 将时间转换为更便于查看的时间格式
@@ -97,7 +93,7 @@ class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
-        onTap: () => {},
+        onTap: () => Get.toNamed('/notepads/handwriting'),
         onLongPress: () => notebookPreviewSetDialog(context),
         child: Stack(
           children: [
