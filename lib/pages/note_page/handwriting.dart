@@ -6,19 +6,16 @@ class HandwritingModePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const HandwritingAppBar(),
-      body: const Stack(
+    return const Scaffold(
+      appBar: HandwritingAppBar(
+        notepadName: '随便了',
+      ),
+      body: Stack(
         children: [
           HandwritingToolBar(toolbarAlignment: Alignment.bottomCenter),
         ],
       ), // TODO 书写界面优化中
-      bottomNavigationBar: const HandwritingBottomBar(),
-      floatingActionButton: FloatingActionButton(
-          tooltip: '回到记事本合集',
-          onPressed: () => {},
-          child: const Icon(Icons.book)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      bottomNavigationBar: HandwritingBottomBar(),
     );
   }
 }

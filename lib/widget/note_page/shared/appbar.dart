@@ -1,7 +1,16 @@
 part of '../handwriting.dart';
 
 class HandwritingAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HandwritingAppBar({super.key});
+  /// “记事本编辑”页面的AppBar组件
+  ///
+  /// 记事本编辑页，可在这个页面中编辑所有记事本，包括手写记事本和PDF记事本
+  ///
+  /// 该AppBar其实在本APP中非常通用，无论是首页、记事本合集页还是记事本编辑页都能见到它，
+  /// 但是因为每个页面都有特定的功能和定位，我对每个Appbar都做了一遍定制化
+  const HandwritingAppBar({super.key, required this.notepadName});
+
+  /// 记事本的名称
+  final String notepadName;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -9,10 +18,7 @@ class HandwritingAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Padding(
-        padding: EdgeInsets.only(left: 80),
-        child: Text('新记事本'),
-      ),
+      title: Text(notepadName),
       actions: [
         IconButton(
           icon: const Icon(Icons.task),

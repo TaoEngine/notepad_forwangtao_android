@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notepad_forwangtao_android/widget/main_page/notepads.dart';
 
 class NotepadsPage extends StatelessWidget {
@@ -10,7 +11,9 @@ class NotepadsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const NotepadAppbar(),
+      appBar: const NotepadAppbar(
+        notepadsName: '默认记事本合集',
+      ),
       body: const NotepadsBody(),
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.edit_note),
@@ -26,6 +29,11 @@ class NotepadsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<List> importCategoryInfo = [
+      [1, '手写', FontAwesomeIcons.feather, false],
+      [2, 'PDF', FontAwesomeIcons.filePdf, false],
+      [3, '刚看', FontAwesomeIcons.hourglass, false],
+    ];
     return ListView(
       // 绘制是竖向的
       scrollDirection: Axis.vertical,
@@ -44,16 +52,9 @@ class NotepadsBody extends StatelessWidget {
             )),
 
         // 标签筛选器
-        const SizedBox(
+        SizedBox(
           height: 60,
-          child: CategoryChip(importCategoryInfo: {
-            '刚看': Icon(Icons.history),
-            '手写': Icon(Icons.draw),
-            '考点': Icon(Icons.tag),
-            '物流的作用': Icon(Icons.tag),
-            '测试测试': Icon(Icons.tag),
-            '大家好': Icon(Icons.tag),
-          }),
+          child: CategoryChip(importCategoryInfo: importCategoryInfo),
         ),
 
         // "文件夹"
@@ -61,10 +62,10 @@ class NotepadsBody extends StatelessWidget {
             padding: EdgeInsets.only(left: 28),
             child: Row(
               children: [
-                Icon(Icons.folder),
+                Icon(Icons.attach_file),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
-                  child: Text('文件夹'),
+                  child: Text('合集'),
                 )
               ],
             )),
@@ -96,7 +97,7 @@ class NotepadsBody extends StatelessWidget {
             padding: EdgeInsets.only(left: 28),
             child: Row(
               children: [
-                Icon(Icons.edit_note),
+                Icon(Icons.description),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text('记事本'),

@@ -1,6 +1,6 @@
 part of '../notepads.dart';
 
-class CategoryChip extends StatelessWidget {
+class CategoryChip extends StatefulWidget {
   /// Body的"类别" **标签筛选器**
   ///
   /// 在首页通过点击"类别"标签 ( **可多选** ) 可以快速筛选出想要的记事本
@@ -15,29 +15,39 @@ class CategoryChip extends StatelessWidget {
 
   /// 从此导入`CategoryChip`的信息
   ///
+  /// 需要按照以下格式排列成嵌套列表:
+  /// ```dart
+  /// [int(标签序号),
+  ///   String(标签名称),
+  ///   Icon(标签图片),
+  ///   bool(标签是否激活)]
+  /// ```
+  ///
   /// 模板:
   /// ```dart
   /// CategoryChip(
-  ///   importCategoryInfo: {
-  ///     '刚看': Icon(Icons.history),
-  ///     '手写': Icon(Icons.draw),
-  ///     '考点': Icon(Icons.tag),
-  ///     '物流的作用': Icon(Icons.tag),
-  ///     '测试测试': Icon(Icons.tag),
-  ///   }
+  ///   importCategoryInfo: [
+  ///     [1, '手写', FontAwesomeIcons.feather, false],
+  ///     [2, 'PDF', FontAwesomeIcons.filePdf, false],
+  ///     [3, '刚看', FontAwesomeIcons.hourglass, false],
+  ///     ...
+  ///   ]
   /// )
   /// ```
-  final Map<String, Icon> importCategoryInfo;
+  final List<List> importCategoryInfo;
 
   @override
+  State<CategoryChip> createState() => _CategoryChipState();
+}
+
+class _CategoryChipState extends State<CategoryChip> {
+  List<List> importCategoryInfo = [];
+  @override
   Widget build(BuildContext context) {
-    List<String> categoryName = [];
-    List<Icon> categoryIcon = [];
-    // 加载类别的标签和图标
-    importCategoryInfo.forEach((key, value) {
-      categoryName.add(key);
-      categoryIcon.add(value);
-    });
+    // 看看importCategoryInfo是否空的
+    if (importCategoryInfo.isEmpty) {
+      importCategoryInfo = List.from(widget.importCategoryInfo);
+    }
     // 生成一个ListView
     return ListView.builder(
         // 横向来布局这些标签
@@ -52,42 +62,27 @@ class CategoryChip extends StatelessWidget {
           } else if (index == importCategoryInfo.length + 1) {
             return const Padding(padding: EdgeInsets.only(left: 5, right: 10));
           } else {
+            // 标签名
+            String categoryName = importCategoryInfo[index - 1][1];
+            // 标签图标
+            IconData categoryIcon = importCategoryInfo[index - 1][2];
+
             return Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5),
-                child: CategoryChipUnit(
-                    categoryName: categoryName[index - 1],
-                    categoryIcon: categoryIcon[index - 1]));
+                child: FilterChip(
+                  avatar: importCategoryInfo[index - 1][3]
+                      ? null
+                      : Icon(categoryIcon),
+                  label: Text(categoryName),
+                  tooltip: categoryName,
+                  selected: importCategoryInfo[index - 1][3],
+                  onSelected: (bool value) {
+                    setState(() {
+                      importCategoryInfo[index - 1][3] = value;
+                    });
+                  },
+                ));
           }
         });
-  }
-}
-
-class CategoryChipUnit extends StatefulWidget {
-  /// 标签筛选器的单个标签配置
-  ///
-  /// 使用的是能够多选的 `FilterChip` ，打上勾就是有辨识度
-  ///
-  /// 不单用，仅为 `CategoryChip` 设计，需要标签名 `categoryName` 和图标 `categoryIcon`
-  const CategoryChipUnit(
-      {super.key, required this.categoryName, required this.categoryIcon});
-
-  /// 标签名
-  final String categoryName;
-
-  /// 标签图标
-  final Icon categoryIcon;
-
-  @override
-  State<CategoryChipUnit> createState() => _CategoryChipUnitState();
-}
-
-class _CategoryChipUnitState extends State<CategoryChipUnit> {
-  @override
-  Widget build(BuildContext context) {
-    return FilterChip(
-      avatar: widget.categoryIcon,
-      label: Text(widget.categoryName),
-      onSelected: (bool value) {},
-    );
   }
 }
