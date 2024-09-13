@@ -17,8 +17,7 @@ class CategoryChip extends StatefulWidget {
   ///
   /// 需要按照以下格式排列成嵌套列表:
   /// ```dart
-  /// [int(标签序号),
-  ///   String(标签名称),
+  /// [String(标签名称),
   ///   Icon(标签图片),
   ///   bool(标签是否激活)]
   /// ```
@@ -27,9 +26,9 @@ class CategoryChip extends StatefulWidget {
   /// ```dart
   /// CategoryChip(
   ///   importCategoryInfo: [
-  ///     [1, '手写', FontAwesomeIcons.feather, false],
-  ///     [2, 'PDF', FontAwesomeIcons.filePdf, false],
-  ///     [3, '刚看', FontAwesomeIcons.hourglass, false],
+  ///     ['手写', FontAwesomeIcons.feather, false],
+  ///     ['PDF', FontAwesomeIcons.filePdf, false],
+  ///     ['刚看', FontAwesomeIcons.hourglass, false],
   ///     ...
   ///   ]
   /// )
@@ -63,22 +62,23 @@ class _CategoryChipState extends State<CategoryChip> {
             return const Padding(padding: EdgeInsets.only(left: 5, right: 10));
           } else {
             // 标签名
-            String categoryName = importCategoryInfo[index - 1][1];
+            String categoryName = importCategoryInfo[index - 1][0];
             // 标签图标
-            IconData categoryIcon = importCategoryInfo[index - 1][2];
+            IconData categoryIcon = importCategoryInfo[index - 1][1];
 
             return Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5),
                 child: FilterChip(
-                  avatar: importCategoryInfo[index - 1][3]
+                  avatar: importCategoryInfo[index - 1][2]
                       ? null
                       : Icon(categoryIcon),
                   label: Text(categoryName),
                   tooltip: categoryName,
-                  selected: importCategoryInfo[index - 1][3],
+                  selected: importCategoryInfo[index - 1][2],
                   onSelected: (bool value) {
                     setState(() {
-                      importCategoryInfo[index - 1][3] = value;
+                      // 更改按下状态
+                      importCategoryInfo[index - 1][2] = value;
                     });
                   },
                 ));

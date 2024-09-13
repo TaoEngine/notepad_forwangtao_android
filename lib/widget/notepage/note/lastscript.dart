@@ -1,4 +1,4 @@
-part of '../handwriting.dart';
+part of '../note.dart';
 
 class LoadLastscript extends StatelessWidget {
   const LoadLastscript({super.key});

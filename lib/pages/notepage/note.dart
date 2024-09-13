@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notepad_forwangtao_android/widget/note_page/handwriting.dart';
+import 'package:notepad_forwangtao_android/widget/notepage/note.dart';
 
 class HandwritingModePage extends StatelessWidget {
   const HandwritingModePage({super.key});

@@ -23,14 +23,14 @@ library routes;
 import 'package:get/get.dart';
 
 // 功能页面的跳转逻辑
-import './main_page/home.dart';
-import 'main_page/notepads.dart';
-import './main_page/notify.dart';
-import './main_page/search.dart';
+import 'mainpage/home.dart';
+import 'mainpage/notepads.dart';
+import 'mainpage/notify.dart';
+import 'mainpage/search.dart';
 
 // 记事本界面的跳转逻辑
-import 'note_page/handwriting.dart';
-import 'note_page/pdf.dart';
+import 'notepage/note.dart';
+import 'notepage/pdf.dart';
 
 class PageRoutes {
   static final pageRoutes = [

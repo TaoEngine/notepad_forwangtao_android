@@ -1,4 +1,4 @@
-part of '../handwriting.dart';
+part of '../note.dart';
 
 class Shading extends StatelessWidget {
   /// 底纹是点还是实线 [bool]

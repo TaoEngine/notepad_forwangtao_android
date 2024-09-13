@@ -1,4 +1,4 @@
-part of '../handwriting.dart';
+part of '../note.dart';
 
 class HandwritingAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// “记事本编辑”页面的AppBar组件

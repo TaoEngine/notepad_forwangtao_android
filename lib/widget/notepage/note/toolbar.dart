@@ -1,4 +1,4 @@
-part of '../handwriting.dart';
+part of '../note.dart';
 
 class HandwritingToolBar extends StatelessWidget {
   /// 组件朝向

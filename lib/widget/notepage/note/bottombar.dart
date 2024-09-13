@@ -1,4 +1,4 @@
-part of '../handwriting.dart';
+part of '../note.dart';
 
 class HandwritingBottomBar extends StatelessWidget {
   const HandwritingBottomBar({super.key});

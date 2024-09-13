@@ -1,4 +1,4 @@
-part of '../handwriting.dart';
+part of '../note.dart';
 
 /// 书写笔迹，在笔或者触摸书写时定义写下的笔迹
 /// - 笔迹位置

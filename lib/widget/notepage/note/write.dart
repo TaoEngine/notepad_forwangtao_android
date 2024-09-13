@@ -1,4 +1,4 @@
-part of '../handwriting.dart';
+part of '../note.dart';
 
 class WritingPanel extends StatefulWidget {
   const WritingPanel({super.key});

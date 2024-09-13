@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:notepad_forwangtao_android/widget/main_page/notepads.dart';
+import 'package:notepad_forwangtao_android/widget/mainpage/notepads.dart';
 
 class NotepadsPage extends StatelessWidget {
   /// 显示记事本首页
@@ -30,9 +30,9 @@ class NotepadsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<List> importCategoryInfo = [
-      [1, '手写', FontAwesomeIcons.feather, false],
-      [2, 'PDF', FontAwesomeIcons.filePdf, false],
-      [3, '刚看', FontAwesomeIcons.hourglass, false],
+      ['手写', FontAwesomeIcons.feather, false],
+      ['PDF', FontAwesomeIcons.filePdf, false],
+      ['刚看', FontAwesomeIcons.hourglass, false],
     ];
     return ListView(
       // 绘制是竖向的
