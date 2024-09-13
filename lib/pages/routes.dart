@@ -44,9 +44,8 @@ class PageRoutes {
     GetPage(name: '/notify', page: () => const NotifyPage()),
 
     // 记事本页面
-    GetPage(
-        name: '/notepads/handwriting', page: () => const HandwritingModePage()),
-    GetPage(name: '/notepads/pdf', page: () => const PDFModePage()),
+    GetPage(name: '/notepads/note', page: () => const NotePage()),
+    GetPage(name: '/notepads/pdf', page: () => const PDFPage()),
 
     //设置页面
   ];

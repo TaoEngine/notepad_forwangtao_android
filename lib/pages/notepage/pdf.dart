@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PDFModePage extends StatelessWidget {
-  const PDFModePage({super.key});
+class PDFPage extends StatelessWidget {
+  const PDFPage({super.key});
 
   @override
   Widget build(BuildContext context) {

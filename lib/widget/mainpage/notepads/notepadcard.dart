@@ -94,7 +94,7 @@ class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         onTap: () => Get.toNamed('/notepads/handwriting'),
-        onLongPress: () => notebookPreviewSetDialog(context),
+        onLongPress: () => notepadPreviewSetDialog(context),
         child: Stack(
           children: [
             Align(

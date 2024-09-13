@@ -1,11 +1,6 @@
 part of '../notepads.dart';
 
-/// 一个长按就能设置笔记预览卡片各功能的对话框
-///
-/// 可以设置:
-/// -
-/// -
-notebookPreviewSetDialog(context) async {
+notepadPreviewSetDialog(context) async {
   var notebookPreviewSetDialogWidget = await showDialog(
       context: context,
       builder: (context) => SimpleDialog(

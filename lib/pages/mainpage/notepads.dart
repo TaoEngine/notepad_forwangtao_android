@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notepad_forwangtao_android/widget/mainpage/notepads.dart';
+//import 'package:notepad_forwangtao_android/funcs/database.dart';
 
 class NotepadsPage extends StatelessWidget {
   /// 显示记事本首页
@@ -18,7 +19,7 @@ class NotepadsPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.edit_note),
         label: const Text('记点啥'),
-        onPressed: () => {}, //TODO 待实现按下“创建记事本”按钮的逻辑
+        onPressed: () => notepadNewDialog(context),
       ),
     );
   }

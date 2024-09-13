@@ -1,44 +1,72 @@
-/// 记事本的数据库模板文件
-///
-/// 由于记事本文件到时候会比较大，我采用了Isar数据库来保证在每次读取记事本的时候速度会达到我的
-/// 预期
-///
-///
-///
-/// 根据Isar数据库文档所述，在每次修改数据库模板文件时，需要执行
-/// ```shell
-/// flutter pub run build_runner build
-/// ```
-/// 才能生成新一版的数据库模板文件供下一次使用
-library notepad_data;
-
 import 'package:isar/isar.dart';
 part 'notepad_data.g.dart';
 
 @collection
 
-/// 记事本数据库
-/// 
-/// 一本能被这个APP正常使用的记事本 [Notepad] 到底需要具备哪些要素呢？
-/// - [notepadType] 
-class Notepad {
-  Id id = Isar.autoIncrement;
+/// 记事本合集的根目录
+class Notepads {
+  /// 记事本合集的唯一标识符
+  Id? notepadsID;
 
-  /// `notepadType`: 记事本类型
-  int? notepadType;
+  /// 记事本合集的名称
+  String? notepadsName;
 
-  /// `notepadName`: 记事本名字
-  String? notepadName;
+  /// 记事本合集的创建时间
+  DateTime? notepadsCreateTime;
 
-  /// `notepadData`: 记事本里的笔记
-  NotepadData? notepadData;
-
-  /// `LastViewTime`: 上次查看信息
-  DateTime? lastViewTime;
-
-  /// `LastEditTime`: 上次修改信息
-  DateTime? lastEditTime;
+  /// 记事本合集的上次查看时间
+  DateTime? notepadsViewTime;
 }
 
-@embedded
-class NotepadData {}
+@collection
+
+/// 记事本合集的子目录
+class NotepadsChild {
+  /// 记事本合集子目录的唯一标识符
+  Id? notepadsChildID;
+
+  /// 记事本合集子目录的上一级的ID,为空就是在根目录之下
+  int? notepadsParentID;
+
+  /// 记事本合集子目录所在根目录
+  int? notepadsID;
+
+  /// 记事本合集子目录的名称
+  String? notepadsChildName;
+
+  /// 记事本合集子目录的创建时间
+  DateTime? notepadsCreateTime;
+
+  /// 记事本合集子目录的上次查看时间
+  DateTime? notepadsViewTime;
+}
+
+@collection
+
+/// 记事本文件
+class NotepadFile {
+  /// 记事本合集的唯一标识符
+  Id? notepadID;
+
+  /// 记事本合集子目录的上一级的ID,为空就是在根目录之下
+  int? notepadsParentID;
+
+  /// 记事本合集子目录所在根目录
+  int? notepadsID;
+
+  /// 记事本的类型
+  /// false是不含附件(如pdf,word,网页)的纯记事本
+  bool? notepadType;
+
+  /// 记事本的名称
+  String? notepadName;
+
+  /// 记事本的修改时间
+  DateTime? notepadEditTime;
+
+  /// 记事本的上次查看时间
+  DateTime? notepadViewTime;
+
+  /// 记事本的内容
+  String? notepadData;
+}

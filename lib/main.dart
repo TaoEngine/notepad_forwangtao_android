@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'pages/routes.dart';
@@ -11,12 +10,11 @@ import 'pages/routes.dart';
 /// 万物起记！汪涛的记事本，启动！
 ///
 /// 这里是APP的启动入口
-///
-/// Notes: 我在这里设置了如何将小白条隐藏的方法
-///
-/// 小白条虽说默认是透明的，但是小白条的图层是在APP之上，要想实现沉浸式小白条，需要在APP绘制前
-/// 就声明APP的图层是在顶部的(1)
 void main() {
+  /// 我在这里设置了如何将小白条隐藏的方法
+  ///
+  /// 小白条虽说默认是透明的，但是小白条的图层是在APP之上，要想实现沉浸式小白条，需要在APP
+  /// 绘制前就声明APP的图层是在顶部的
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -24,7 +22,7 @@ void main() {
       statusBarColor: Colors.transparent,
     ),
   );
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge); //(1)
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(const MainApp());
 }
 
