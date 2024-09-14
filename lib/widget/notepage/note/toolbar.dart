@@ -1,5 +1,91 @@
 part of '../note.dart';
 
+Card _toolbarCard(bool onHorizontalVertical) {
+  List<List> cardTools = [
+    ['笔', const FaIcon(FontAwesomeIcons.pencil)],
+    ['荧光笔', const FaIcon(FontAwesomeIcons.highlighter)],
+    ['橡皮擦', const FaIcon(FontAwesomeIcons.eraser)],
+    ['选择', const FaIcon(FontAwesomeIcons.objectGroup)],
+    ['尺子', const FaIcon(FontAwesomeIcons.ruler)]
+  ];
+
+  List<Widget> cardWidgets = [];
+
+  for (var element in cardTools) {
+    if (cardTools.indexOf(element) == 0) {
+      if (onHorizontalVertical) {
+        cardWidgets.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 5),
+            child: IconButton(
+                tooltip: element[0], onPressed: () => {}, icon: element[1]),
+          ),
+        );
+      } else {
+        cardWidgets.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 5),
+            child: IconButton(
+                tooltip: element[0], onPressed: () => {}, icon: element[1]),
+          ),
+        );
+      }
+    } else if (cardTools.indexOf(element) == cardTools.length - 1) {
+      if (onHorizontalVertical) {
+        cardWidgets.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 5, bottom: 20),
+            child: IconButton(
+                tooltip: element[0], onPressed: () => {}, icon: element[1]),
+          ),
+        );
+      } else {
+        cardWidgets.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 5, right: 20),
+            child: IconButton(
+                tooltip: element[0], onPressed: () => {}, icon: element[1]),
+          ),
+        );
+      }
+    } else {
+      if (onHorizontalVertical) {
+        cardWidgets.add(
+          Padding(
+            padding: const EdgeInsets.only(top: 5, bottom: 5),
+            child: IconButton(
+                tooltip: element[0], onPressed: () => {}, icon: element[1]),
+          ),
+        );
+      } else {
+        cardWidgets.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 5, right: 5),
+            child: IconButton(
+                tooltip: element[0], onPressed: () => {}, icon: element[1]),
+          ),
+        );
+      }
+    }
+  }
+
+  if (onHorizontalVertical) {
+    return Card(
+      margin: const EdgeInsets.all(5),
+      child: Column(
+        children: cardWidgets,
+      ),
+    );
+  } else {
+    return Card(
+      margin: const EdgeInsets.all(5),
+      child: Row(
+        children: cardWidgets,
+      ),
+    );
+  }
+}
+
 class HandwritingToolBar extends StatelessWidget {
   /// 组件朝向
   final Alignment toolbarAlignment;
@@ -114,90 +200,4 @@ Column _onBottomAlign(BuildContext context) {
       SizedBox(height: 70, width: 330, child: _toolbarCard(false))
     ],
   );
-}
-
-Card _toolbarCard(bool onHorizontalVertical) {
-  List<List> cardTools = [
-    ['笔', const FaIcon(FontAwesomeIcons.pencil)],
-    ['荧光笔', const FaIcon(FontAwesomeIcons.highlighter)],
-    ['橡皮擦', const FaIcon(FontAwesomeIcons.eraser)],
-    ['选择', const FaIcon(FontAwesomeIcons.objectGroup)],
-    ['尺子', const FaIcon(FontAwesomeIcons.ruler)]
-  ];
-
-  List<Widget> cardWidgets = [];
-
-  for (var element in cardTools) {
-    if (cardTools.indexOf(element) == 0) {
-      if (onHorizontalVertical) {
-        cardWidgets.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 5),
-            child: IconButton(
-                tooltip: element[0], onPressed: () => {}, icon: element[1]),
-          ),
-        );
-      } else {
-        cardWidgets.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 5),
-            child: IconButton(
-                tooltip: element[0], onPressed: () => {}, icon: element[1]),
-          ),
-        );
-      }
-    } else if (cardTools.indexOf(element) == cardTools.length - 1) {
-      if (onHorizontalVertical) {
-        cardWidgets.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 20),
-            child: IconButton(
-                tooltip: element[0], onPressed: () => {}, icon: element[1]),
-          ),
-        );
-      } else {
-        cardWidgets.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 5, right: 20),
-            child: IconButton(
-                tooltip: element[0], onPressed: () => {}, icon: element[1]),
-          ),
-        );
-      }
-    } else {
-      if (onHorizontalVertical) {
-        cardWidgets.add(
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: IconButton(
-                tooltip: element[0], onPressed: () => {}, icon: element[1]),
-          ),
-        );
-      } else {
-        cardWidgets.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 5, right: 5),
-            child: IconButton(
-                tooltip: element[0], onPressed: () => {}, icon: element[1]),
-          ),
-        );
-      }
-    }
-  }
-
-  if (onHorizontalVertical) {
-    return Card(
-      margin: const EdgeInsets.all(5),
-      child: Column(
-        children: cardWidgets,
-      ),
-    );
-  } else {
-    return Card(
-      margin: const EdgeInsets.all(5),
-      child: Row(
-        children: cardWidgets,
-      ),
-    );
-  }
 }

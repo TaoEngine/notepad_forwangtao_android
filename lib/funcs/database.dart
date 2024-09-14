@@ -2,29 +2,30 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:notepad_forwangtao_android/static/notepad_data.dart';
 
-// class Database {
-//   static final Database _instance = Database._internal();
-//   late Isar _isar;
+/// 将记事本数据库作为单例看待
+class NotepadsDB {
+  static final NotepadsDB _instance = NotepadsDB._internal();
+  late Isar _db;
 
-//   factory Database() {
-//     return _instance;
-//   }
+  factory NotepadsDB() {
+    return _instance;
+  }
 
-//   Database._internal() {
-//     _initializeIsar();
-//   }
+  NotepadsDB._internal() {
+    initialize();
+  }
 
-//   Future<void> _initializeIsar(schema) async {
-//     final dir = await getApplicationDocumentsDirectory();
-//     _isar = await Isar.open(
-//       [schema],
-//       directory: dir.path,
-//       inspector: true,
-//     );
-//   }
+  Future<void> initialize() async {
+    final dir = await getApplicationDocumentsDirectory();
+    _db = await Isar.open(
+      [NotepadsSchema, NotepadsChildSchema, NotepadFileSchema],
+      directory: dir.path,
+      inspector: true,
+    );
+  }
 
-//   Isar get isar => _isar;
-// }
+  Isar get getdb => _db;
+}
 
 /// 创建记事本合集
 Future<int> addNewNotepads(String notepadsName) async {
@@ -35,7 +36,9 @@ Future<int> addNewNotepads(String notepadsName) async {
     ..notepadsCreateTime = DateTime.now()
     ..notepadsViewTime = DateTime.now();
 
-  _add(notepadsModel, NotepadsSchema);
+  await NotepadsDB().getdb.writeTxn(() async {
+    NotepadsDB().getdb.notepads.put(notepadsModel);
+  });
   return timestamp;
 }
 
@@ -51,7 +54,9 @@ Future<int> addNewNotepadsChild(
     ..notepadsCreateTime = DateTime.now()
     ..notepadsViewTime = DateTime.now();
 
-  _add(notepadsChildModel, NotepadsChildSchema);
+  await NotepadsDB().getdb.writeTxn(() async {
+    NotepadsDB().getdb.notepadsChilds.put(notepadsChildModel);
+  });
   return timestamp;
 }
 
@@ -67,7 +72,9 @@ Future<int> addNewNotepad(
     ..notepadEditTime = DateTime.now()
     ..notepadViewTime = DateTime.now();
 
-  _add(notepadFileModel, NotepadFileSchema);
+  await NotepadsDB().getdb.writeTxn(() async {
+    NotepadsDB().getdb.notepadFiles.put(notepadFileModel);
+  });
   return timestamp;
 }
 

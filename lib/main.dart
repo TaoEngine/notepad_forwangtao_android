@@ -6,11 +6,12 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'pages/routes.dart';
+import 'package:notepad_forwangtao_android/funcs/database.dart';
 
 /// 万物起记！汪涛的记事本，启动！
 ///
 /// 这里是APP的启动入口
-void main() {
+void main() async {
   /// 我在这里设置了如何将小白条隐藏的方法
   ///
   /// 小白条虽说默认是透明的，但是小白条的图层是在APP之上，要想实现沉浸式小白条，需要在APP
@@ -23,6 +24,7 @@ void main() {
     ),
   );
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  await NotepadsDB().initialize();
   runApp(const MainApp());
 }
 
@@ -34,7 +36,7 @@ class MainApp extends StatelessWidget {
     return DynamicColorBuilder(builder: (lightDynamic, darkDynamic) {
       //GetX
       return GetMaterialApp(
-        title: '采购与供应管理',
+        title: '默认记事本',
 
         theme: ThemeData(
           colorScheme: lightDynamic,

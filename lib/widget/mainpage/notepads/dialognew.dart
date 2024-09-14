@@ -21,16 +21,27 @@ class _NewDialogUnitState extends State<NewDialogUnit> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Icon(Icons.description),
-      content: TextField(
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: '为记事本起个名字',
+      content: SizedBox(
+        height: 150,
+        child: Column(
+          children: [
+            const Text('这只是临时的新建方案，以后会删掉'),
+            const Text('以后会在记事本内部实现新建记事本的'),
+            const Text('像苹果备忘录一样'),
+            const SizedBox(height: 20),
+            TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: '为记事本起个名字',
+              ),
+              onChanged: (value) {
+                setState(() {
+                  inputName = value;
+                });
+              },
+            ),
+          ],
         ),
-        onChanged: (value) {
-          setState(() {
-            inputName = value;
-          });
-        },
       ),
       actions: [
         TextButton(

@@ -79,18 +79,10 @@ class NotepadAppbar extends StatelessWidget implements PreferredSizeWidget {
     ];
 
     // 检测传入的是根目录还是某路径
-    if (notepadsDirName == '') {
-      return AppBar(
-          leading: rootLeading,
-          centerTitle: false,
-          title: rootTitle,
-          actions: actionsButton);
-    } else {
-      return AppBar(
-          leading: rootLeading,
-          centerTitle: false,
-          title: innerTitle,
-          actions: actionsButton);
-    }
+    return AppBar(
+        leading: notepadsDirName.isEmpty ? rootLeading : rootTitle,
+        centerTitle: false,
+        title: notepadsDirName.isEmpty ? rootTitle : innerTitle,
+        actions: actionsButton);
   }
 }

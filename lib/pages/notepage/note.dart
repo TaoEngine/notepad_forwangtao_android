@@ -1,29 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:notepad_forwangtao_android/funcs/database.dart';
+import 'package:notepad_forwangtao_android/static/notepad_data.dart';
 import 'package:notepad_forwangtao_android/widget/notepage/note.dart';
 import 'package:get/get.dart';
-
-class HandwritingModePage extends StatelessWidget {
-  const HandwritingModePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final arguments = Get.arguments;
-    var a = checkNotepad(arguments['notepadID']);
-    print('这里是$a');
-    return const Scaffold(
-      appBar: HandwritingAppBar(
-        notepadName: '随便了',
-      ),
-      body: Stack(
-        children: [
-          HandwritingToolBar(toolbarAlignment: Alignment.bottomCenter),
-        ],
-      ), // TODO 书写界面优化中
-      bottomNavigationBar: HandwritingBottomBar(),
-    );
-  }
-}
 
 class NotePage extends StatefulWidget {
   const NotePage({super.key});
@@ -33,18 +13,45 @@ class NotePage extends StatefulWidget {
 }
 
 class _NotePageState extends State<NotePage> {
+  bool handwritingToolBar = false;
   @override
   Widget build(BuildContext context) {
     // 从前面获取到记事本ID，就能访问记事本了
     final arguments = Get.arguments;
-    var noteData = checkNotepad(arguments['notepadID']);
-    // 如果记事本信息没传过来，就显示一个加载标志
-    if (noteData != Future) {
-      return const Center();
-    } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
+    var noteDB =
+        NotepadsDB().getdb.notepadFiles.getSync(arguments['notepadID']);
+    var noteName = noteDB?.notepadName;
+
+    // 记事本布局
+    return Scaffold(
+      appBar: NoteAppBar(notepadName: noteName ?? '默认记事本'),
+      body: Stack(children: [
+        // 手写工具组件
+        handwritingToolBar
+            ? const HandwritingToolBar(toolbarAlignment: Alignment.bottomCenter)
+            : Container(),
+      ]),
+      bottomNavigationBar: HandwritingBottomBar(
+        // 按下“弹出键盘”按钮
+        pressTypingButton: () => setState(() {
+          handwritingToolBar = false;
+          SystemChannels.textInput.invokeMethod<void>('TextInput.show');
+        }),
+
+        // 按下“手写”按钮
+        pressHandWritingButton: () => setState(() {
+          handwritingToolBar = !handwritingToolBar;
+        }),
+
+        // 按下“插入”按钮
+        pressInsertPhotoButton: null,
+
+        // 按下“撤销”按钮
+        pressUndoButton: null,
+
+        // 按下“重做”按钮
+        pressRedoButton: null,
+      ),
+    );
   }
 }
