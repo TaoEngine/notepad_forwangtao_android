@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:notepad_forwangtao_android/funcs/database.dart';
 import 'package:notepad_forwangtao_android/funcs/timeview.dart';
 
-part 'notepads/appbar.dart';
 part 'notepads/categorychip.dart';
 part 'notepads/notepadcard.dart';
 part 'notepads/foldercard.dart';

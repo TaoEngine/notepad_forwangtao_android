@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'notepad_data.dart';
+part of 'datamodel.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator

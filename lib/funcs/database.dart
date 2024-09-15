@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:notepad_forwangtao_android/static/notepad_data.dart';
+import 'package:notepad_forwangtao_android/static/datamodel.dart';
 
 /// 将记事本数据库作为单例看待
 class NotepadsDB {
@@ -76,54 +76,4 @@ Future<int> addNewNotepad(
     NotepadsDB().getdb.notepadFiles.put(notepadFileModel);
   });
   return timestamp;
-}
-
-/// 查询状态
-checkNotepad(int notepadID) {
-  var notepad = _check(notepadID, NotepadFileSchema);
-  return notepad;
-}
-
-_add(dynamic model, CollectionSchema schema) async {
-  final dir = await getApplicationDocumentsDirectory();
-  final database = await Isar.open(
-    [schema],
-    directory: dir.path,
-    inspector: true,
-  );
-
-  await database.writeTxn(() async {
-    if (schema == NotepadsSchema) {
-      await database.notepads.put(model);
-    } else if (schema == NotepadsChildSchema) {
-      await database.notepadsChilds.put(model);
-    } else if (schema == NotepadFileSchema) {
-      await database.notepadFiles.put(model);
-    }
-  });
-
-  await database.close();
-}
-
-_check(int id, CollectionSchema schema) async {
-  final dir = await getApplicationDocumentsDirectory();
-  final database = await Isar.open(
-    [schema],
-    directory: dir.path,
-    inspector: true,
-  );
-  final Object? databaseRequest;
-
-  if (schema == NotepadsSchema) {
-    databaseRequest = await database.notepads.get(id);
-  } else if (schema == NotepadsChildSchema) {
-    databaseRequest = await database.notepadsChilds.get(id);
-  } else if (schema == NotepadFileSchema) {
-    databaseRequest = await database.notepadFiles.get(id);
-  } else {
-    databaseRequest = null;
-  }
-
-  await database.close();
-  return databaseRequest;
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:notepad_forwangtao_android/widget/mainpage/notepads.dart';
+import 'package:notepad_forwangtao_android/widget/shared/appbar.dart';
 //import 'package:notepad_forwangtao_android/funcs/database.dart';
 
 class NotepadsPage extends StatelessWidget {
@@ -12,8 +14,12 @@ class NotepadsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const NotepadAppbar(
-        notepadsName: '默认记事本合集',
+      appBar: AppBarModel(
+        appbarTitle: '默认记事本合集',
+        appbarMode: '记事本合集',
+        appbarLeftButton: true,
+        iconLeftButton: Icons.collections_bookmark,
+        pressLeftButton: () => Get.toNamed('/home'),
       ),
       body: const NotepadsBody(),
       floatingActionButton: FloatingActionButton.extended(

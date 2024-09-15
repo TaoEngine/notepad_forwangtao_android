@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:notepad_forwangtao_android/funcs/database.dart';
-import 'package:notepad_forwangtao_android/static/notepad_data.dart';
+import 'package:notepad_forwangtao_android/static/datamodel.dart';
 import 'package:notepad_forwangtao_android/widget/notepage/note.dart';
+import 'package:notepad_forwangtao_android/widget/shared/appbar.dart';
 import 'package:get/get.dart';
 
 class NotePage extends StatefulWidget {
@@ -24,7 +25,10 @@ class _NotePageState extends State<NotePage> {
 
     // 记事本布局
     return Scaffold(
-      appBar: NoteAppBar(notepadName: noteName ?? '默认记事本'),
+      appBar: AppBarModel(
+          appbarTitle: noteName ?? '默认记事本',
+          appbarMode: noteName ?? '默认记事本',
+          appbarLeftButton: false),
       body: Stack(children: [
         // 手写工具组件
         handwritingToolBar

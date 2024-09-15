@@ -35,10 +35,7 @@ import 'notepage/pdf.dart';
 class PageRoutes {
   static final pageRoutes = [
     // 功能页面
-    GetPage(
-      name: '/notehome',
-      page: () => const HomePage(),
-    ),
+    GetPage(name: '/home', page: () => const HomePage()),
     GetPage(name: '/notepads', page: () => const NotepadsPage()),
     GetPage(name: '/search', page: () => const SearchPage()),
     GetPage(name: '/notify', page: () => const NotifyPage()),

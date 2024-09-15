@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-part 'notepad_data.g.dart';
+part 'datamodel.g.dart';
 
 @collection
 
