@@ -13,8 +13,11 @@ class AppBarModel extends StatelessWidget implements PreferredSizeWidget {
   /// AppBar是否含有左侧按钮
   final bool appbarLeftButton;
 
-  /// AppBar
+  /// 左侧按钮的图标
   final IconData? iconLeftButton;
+
+  /// 左侧按钮的描述
+  final String? describeLeftButton;
 
   /// 按下左侧按钮
   final VoidCallback? pressLeftButton;
@@ -40,6 +43,7 @@ class AppBarModel extends StatelessWidget implements PreferredSizeWidget {
       required this.appbarLeftButton,
       this.appbarSubtitle,
       this.iconLeftButton,
+      this.describeLeftButton,
       this.pressLeftButton,
       this.pressTaskButton,
       this.pressSearchButton,
@@ -70,7 +74,11 @@ class AppBarModel extends StatelessWidget implements PreferredSizeWidget {
     ];
 
     var leadingButton = appbarLeftButton
-        ? IconButton(onPressed: pressLeftButton, icon: Icon(iconLeftButton))
+        ? IconButton(
+            onPressed: pressLeftButton,
+            icon: Icon(iconLeftButton),
+            tooltip: describeLeftButton,
+          )
         : null;
 
     var title = appbarSubtitle == null

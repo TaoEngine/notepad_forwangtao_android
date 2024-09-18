@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:get/get.dart';
+
 import 'package:notepad_forwangtao_android/funcs/database.dart';
 import 'package:notepad_forwangtao_android/static/datamodel.dart';
 import 'package:notepad_forwangtao_android/widget/notepage/note.dart';
 import 'package:notepad_forwangtao_android/widget/shared/appbar.dart';
-import 'package:get/get.dart';
 
 class NotePage extends StatefulWidget {
   const NotePage({super.key});
@@ -14,7 +16,9 @@ class NotePage extends StatefulWidget {
 }
 
 class _NotePageState extends State<NotePage> {
+  /// 是否展示手写工具栏
   bool handwritingToolBar = false;
+
   @override
   Widget build(BuildContext context) {
     // 从前面获取到记事本ID，就能访问记事本了
