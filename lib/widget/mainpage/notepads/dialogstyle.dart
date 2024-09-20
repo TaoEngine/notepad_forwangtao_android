@@ -8,7 +8,9 @@ part of '../notepads.dart';
 /// - 对笔记进行归类，分类算法可在设置中调整
 /// - 可以调整笔记的大小，方便到时候我在不同设备上使用的时候也能看清楚笔记内容
 /// - 进入设置的快捷通道
-styleDialog(context) async {
+styleDialog(
+  BuildContext context,
+) async {
   var styleDialogWidget = await showDialog(
       context: context,
       builder: (context) => SimpleDialog(

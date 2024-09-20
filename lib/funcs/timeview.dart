@@ -7,6 +7,7 @@
 /// - 若输入时间离现在不足1个月，就显示 ' `X` 天'
 /// - 若输入时间离现在过了个把月，就显示 'MM/DD'
 /// - 若输入时间离现在过了有些年，就显示 'YY/MM/DD'
+/// TODO 时间计算有问题，会将12：59和13：01的间隔看作为一小时
 String formatEasyreadTime(DateTime encodeTime) {
   DateTime nowTime = DateTime.now();
   if (encodeTime.year != nowTime.year) {

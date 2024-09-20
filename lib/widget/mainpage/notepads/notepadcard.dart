@@ -1,9 +1,7 @@
 part of '../notepads.dart';
 
-class NotepadPreviewCard extends StatefulWidget {
-  /// 记事本名字 [String]
-  ///
-  ///
+class NotepadPreviewCard extends StatelessWidget {
+  /// 记事本名字
   final String notepadName;
 
   /// 记事本类型
@@ -15,33 +13,24 @@ class NotepadPreviewCard extends StatefulWidget {
   /// 上次修改信息
   final DateTime lastEditTime;
 
-  const NotepadPreviewCard(
-      {super.key,
-      required this.notepadName,
-      required this.notepadType,
-      required this.lastViewTime,
-      required this.lastEditTime});
+  /// 短按动作
+  final VoidCallback? onOnePress;
 
-  @override
-  State<NotepadPreviewCard> createState() => _NotepadPreviewCardState();
-}
+  /// 长按动作
+  final VoidCallback? onLongPress;
 
-class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
+  const NotepadPreviewCard({
+    super.key,
+    required this.notepadName,
+    required this.notepadType,
+    required this.lastViewTime,
+    required this.lastEditTime,
+    this.onOnePress,
+    this.onLongPress,
+  });
+
   @override
   Widget build(BuildContext context) {
-    // 定义记事本的路由位置
-    String notepadRouter(int notepadType) {
-      switch (notepadType) {
-        case 0:
-          return '/note/handwriting';
-        case 1:
-          return '/note/markdown';
-        case 2:
-          return '/note/pdf';
-      }
-      return '/note/markdown';
-    }
-
     /// 在面对不同笔记类型的情况下可以切换底纹来表示打开的文件
     IconData cardBackground(bool notebookType) {
       switch (notebookType) {
@@ -53,8 +42,8 @@ class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
     }
 
     // 将时间转换为更便于查看的时间格式
-    String lastViewTimeEasyRead = formatEasyreadTime(widget.lastViewTime);
-    String lastEditTimeEasyRead = formatEasyreadTime(widget.lastEditTime);
+    String lastViewTimeEasyRead = formatEasyreadTime(lastViewTime);
+    String lastEditTimeEasyRead = formatEasyreadTime(lastEditTime);
 
     return Container(
       decoration: BoxDecoration(
@@ -64,22 +53,20 @@ class _NotepadPreviewCardState extends State<NotepadPreviewCard> {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
-        onTap: () => {},
-        onLongPress: () => notepadPreviewSetDialog(context),
+        onTap: onOnePress,
+        onLongPress: onLongPress,
         child: Stack(
           children: [
             Align(
               alignment: Alignment.center,
-              child: Icon(cardBackground(widget.notepadType),
-                  size: 80,
-                  color:
-                      Theme.of(context).colorScheme.primary.withOpacity(0.5)),
+              child: Icon(cardBackground(notepadType),
+                  size: 80, color: Theme.of(context).colorScheme.primary),
             ),
             Align(
               alignment: Alignment.bottomLeft,
               child: ListTile(
                 title: Text(
-                  widget.notepadName,
+                  notepadName,
                   style: const TextStyle(
                       color: Color.fromARGB(255, 150, 150, 150), fontSize: 25),
                 ),
