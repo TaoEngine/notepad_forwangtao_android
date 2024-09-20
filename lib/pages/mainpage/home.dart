@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+//import 'package:get/get.dart';
 import 'package:notepad_forwangtao_android/widget/shared/appbar.dart';
 
 class HomePage extends StatelessWidget {

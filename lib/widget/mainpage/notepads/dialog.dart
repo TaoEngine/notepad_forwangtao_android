@@ -1,5 +1,56 @@
 part of '../notepads.dart';
 
+class WarnDialogUnit extends StatelessWidget {
+  /// 警示描述
+  final String labelText;
+
+  /// 确认文本
+  final String doesText;
+
+  /// 按下确认
+  final VoidCallback pressDoes;
+
+  const WarnDialogUnit({
+    super.key,
+    required this.labelText,
+    required this.doesText,
+    required this.pressDoes,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      surfaceTintColor: Theme.of(context).colorScheme.error,
+      title: Icon(Icons.warning, color: Theme.of(context).colorScheme.error),
+      content: SizedBox(
+          height: 80,
+          child: Center(
+            child: Text(
+              labelText,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.error,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
+          )),
+      actions: [
+        TextButton(
+          child: Text("我不敢",
+              style: TextStyle(color: Theme.of(context).colorScheme.error)),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        TextButton(
+          onPressed: pressDoes,
+          child: Text(doesText,
+              style: TextStyle(color: Theme.of(context).colorScheme.error)),
+        ),
+      ],
+    );
+  }
+}
+
 class InputDialogUnit extends StatefulWidget {
   /// 窗口描述
   final String labelText;
@@ -31,7 +82,8 @@ class _InputDialogUnitState extends State<InputDialogUnit> {
   Widget build(BuildContext context) {
     return AlertDialog(
       surfaceTintColor: Theme.of(context).colorScheme.primary,
-      title: const Icon(Icons.drive_file_rename_outline),
+      title: Icon(Icons.drive_file_rename_outline,
+          color: Theme.of(context).colorScheme.primary),
       content: SizedBox(
         height: 60,
         child: TextField(

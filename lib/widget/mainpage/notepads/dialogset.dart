@@ -84,12 +84,10 @@ class NotepadsChildSetDialogUnit extends StatelessWidget {
         ListTile(
             leading: const Icon(Icons.drive_file_rename_outline),
             title: const Text('重命名'),
-            subtitle: const Text('子目录的名字是。'),
             onTap: pressRename),
         ListTile(
-            leading: const Icon(Icons.tag),
+            leading: const Icon(Icons.drive_file_move),
             title: Text('移动 "$notepadsChildName" 子目录（暂不可用，开发中）'),
-            subtitle: Text('让 "$notepadsChildName" 和里面的记事本一起找个新家'),
             onTap: pressMove),
         ListTile(
             leading: const Icon(Icons.not_interested),

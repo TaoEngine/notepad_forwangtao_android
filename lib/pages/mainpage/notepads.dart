@@ -35,7 +35,7 @@ class NotepadsPage extends StatelessWidget {
             context: context,
             builder: (context) => InputDialogUnit(
                 labelText: '新建记事本（临时，以后会改）',
-                doesText: '重命名',
+                doesText: '新建',
                 pressDoes: (String input) async {
                   int notepadID = await addNewNotepad(1, input, false);
                   Get.back();
@@ -174,15 +174,24 @@ class _NotepadsChildViewerState extends State<NotepadsChildViewer> {
                             }));
                   },
                   pressDelete: () async {
-                    await NotepadsDB().getdb.writeTxn(() async {
-                      await NotepadsDB()
-                          .getdb
-                          .notepadsChilds
-                          .delete(notepadsChildID);
-                    });
-                    setState(() {
-                      Get.back();
-                    });
+                    showDialog(
+                      context: context,
+                      builder: (context) => WarnDialogUnit(
+                          labelText: '删除操作不可逆！请三思',
+                          doesText: '删除',
+                          pressDoes: () async {
+                            await NotepadsDB().getdb.writeTxn(() async {
+                              await NotepadsDB()
+                                  .getdb
+                                  .notepadsChilds
+                                  .delete(notepadsChildID);
+                            });
+                            setState(() {
+                              Get.back();
+                              Get.back();
+                            });
+                          }),
+                    );
                   },
                 ),
               );
@@ -307,12 +316,24 @@ class _NotepadViewerState extends State<NotepadViewer> {
                               }));
                     },
                     pressDelete: () async {
-                      await NotepadsDB().getdb.writeTxn(() async {
-                        await NotepadsDB().getdb.notepadFiles.delete(notepadID);
-                      });
-                      setState(() {
-                        Get.back();
-                      });
+                      showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) => WarnDialogUnit(
+                              labelText: '丢弃操作不可逆！请三思',
+                              doesText: '丢弃',
+                              pressDoes: () async {
+                                await NotepadsDB().getdb.writeTxn(() async {
+                                  await NotepadsDB()
+                                      .getdb
+                                      .notepadFiles
+                                      .delete(notepadID);
+                                });
+                                setState(() {
+                                  Get.back();
+                                  Get.back();
+                                });
+                              }));
                     },
                   ),
                 );
