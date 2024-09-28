@@ -28,9 +28,7 @@ class WarnDialogUnit extends StatelessWidget {
             child: Text(
               labelText,
               style: TextStyle(
-                  color: Theme.of(context).colorScheme.error,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
+                  color: Theme.of(context).colorScheme.error, fontSize: 18),
             ),
           )),
       actions: [

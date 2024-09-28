@@ -9,6 +9,8 @@ import 'package:notepad_forwangtao_android/widget/notepage/note.dart';
 import 'package:notepad_forwangtao_android/widget/shared/appbar.dart';
 
 class NotePage extends StatefulWidget {
+
+  /// 编辑笔记界面，
   const NotePage({super.key});
 
   @override
@@ -16,8 +18,10 @@ class NotePage extends StatefulWidget {
 }
 
 class _NotePageState extends State<NotePage> {
-  /// 是否展示手写工具栏
-  bool handwritingToolBar = false;
+  /// 是否为手写模式
+  bool handwritingMode = false;
+
+  /// 是否为打字模式
 
   @override
   Widget build(BuildContext context) {
@@ -30,25 +34,28 @@ class _NotePageState extends State<NotePage> {
     // 记事本布局
     return Scaffold(
       appBar: AppBarModel(
-          appbarTitle: noteName ?? '默认记事本',
-          appbarMode: noteName ?? '默认记事本',
+          appbarTitle: noteName ?? '新建记事本',
+          appbarMode: noteName ?? '新建记事本',
           appbarLeftButton: false),
       body: Stack(children: [
+        // 打字工具组件
+        const TypingPanel(),
+
         // 手写工具组件
-        handwritingToolBar
+        handwritingMode
             ? const HandwritingToolBar(toolbarAlignment: Alignment.bottomCenter)
-            : Container(),
+            : const Writingtool(),
       ]),
       bottomNavigationBar: HandwritingBottomBar(
         // 按下“弹出键盘”按钮
         pressTypingButton: () => setState(() {
-          handwritingToolBar = false;
+          handwritingMode = false;
           SystemChannels.textInput.invokeMethod<void>('TextInput.show');
         }),
 
         // 按下“手写”按钮
         pressHandWritingButton: () => setState(() {
-          handwritingToolBar = !handwritingToolBar;
+          handwritingMode = !handwritingMode;
         }),
 
         // 按下“插入”按钮

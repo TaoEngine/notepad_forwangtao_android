@@ -20,8 +20,11 @@ dependencies:
   path_provider: ^2.1.4
   # GetX 状态组件
   get:
-  # FontAwesome图标
+  # FontAwesome 图标
   font_awesome_flutter: ^10.7.0
+  # TensorFlow Lite 机器学习框架
+  tflite_flutter: ^0.11.0
+  dual_screen: ^1.0.4
   
 
 dev_dependencies:

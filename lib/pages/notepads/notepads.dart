@@ -167,9 +167,10 @@ class _NotepadsChildViewerState extends State<NotepadsChildViewer> {
                                     .getdb
                                     .notepadsChilds
                                     .put(element);
-                                setState(() {
-                                  Get.back();
-                                });
+                              });
+                              // 等重命名完成后再返回，因为存在未等待返回的Bug
+                              setState(() {
+                                Get.back();
                               });
                             }));
                   },
@@ -309,9 +310,10 @@ class _NotepadViewerState extends State<NotepadViewer> {
                                       .getdb
                                       .notepadFiles
                                       .put(element);
-                                  setState(() {
-                                    Get.back();
-                                  });
+                                });
+                                // 等重命名完成后再返回，因为存在未等待返回的Bug
+                                setState(() {
+                                  Get.back();
                                 });
                               }));
                     },

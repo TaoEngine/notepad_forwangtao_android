@@ -1,5 +1,33 @@
 part of '../note.dart';
 
+class TypingPanel extends StatefulWidget {
+  /// 打字组件
+  ///
+  /// 输入字体文件和间距数据，就能打出手写字
+  const TypingPanel({super.key});
+
+  @override
+  State<TypingPanel> createState() => _TypingPanelState();
+}
+
+class _TypingPanelState extends State<TypingPanel> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    /// 键盘监听器
+    return Container();
+  }
+}
+
 class WritingPanel extends StatefulWidget {
   const WritingPanel({super.key});
 
