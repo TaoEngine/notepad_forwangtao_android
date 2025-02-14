@@ -1,5 +1,5 @@
 name: notepad_forwangtao_android
-description: "汪涛的记事本"
+description: "汪涛的记事本 安卓版"
 publish_to: 'none'
 version: 0.0.1
 
@@ -9,26 +9,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Flutter 本地化
   flutter_localizations:
     sdk: flutter
-  # Material You 动态颜色
+  # MaterialYou 动态颜色
   dynamic_color: ^1.7.0
-  flex_color_scheme: ^7.3.1
-  # isar 数据库
-  isar: ^3.1.0+1
-  isar_flutter_libs: ^3.1.0+1
-  path_provider: ^2.1.4
-  # GetX 状态组件
-  get:
-  # FontAwesome图标
+  # FontAwesome 图标
   font_awesome_flutter: ^10.7.0
+  # Riverpod 状态管理
+  riverpod: ^2.6.1
+  # 路由
+  go_router: ^14.8.0
   
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-  isar_generator: ^3.1.0+1
+  flutter_lints: ^5.0.0
   build_runner: ^2.4.12
 
 flutter:
