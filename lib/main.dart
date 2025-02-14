@@ -41,8 +41,7 @@ class MainApp extends StatelessWidget {
         ],
 
         // 路由设置
-        routeInformationParser: NotepadRoutes.router.routeInformationParser,
-        routerDelegate: NotepadRoutes.router.routerDelegate,
+        routerConfig: NotepadRoutes.router,
       );
     });
   }
